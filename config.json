@@ -1,0 +1,7 @@
+{
+    "datafilename" : "data_b1d3qun.lst",
+    "defaultdatadir" : "data/",
+    "tempdatadir" : "tempdata/",
+    "resultfile" : "results.txt",
+    "plotresults" : false
+}
