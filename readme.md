@@ -47,7 +47,7 @@ https://raw.githubusercontent.com/scta-texts/wodehamordinatio/master/b1-d1-q13/v
 
 These files must all be valid witnesses of a same document. 
 Ideally, they must have been created following the the [SCTA standards](http://community.scta.info/pages/lombardpress-schema-diplomatic.html) for diplomatic editions, 
-although other TEI-p5-compliant files might be correcly processed. 
+although other TEI-p5-compliant files might be correctly processed. 
 It is required, however, that all documents be structurally identical.
 Such an isomorphism is ensured by using the same number of textual paragraphs (`//text//p`)
 with the same `@xml:id`.
@@ -77,7 +77,7 @@ A [Python port](https://interedition.github.io/collatex/pythonport.html)
 of the [CollateX](https://collatex.net/) tool set is used to compare each `<p>` across all witnesses. 
 Collatex breaks the text down into several segments and then produces a json output of its comparison 
 (see [here](https://collatex.net/doc/#json-output) for details).
-[Witrels](https://github.com/nivaca/witrels) then parses and analises this output, 
+[Witrels](https://github.com/nivaca/witrels) then parses and analyses this output, 
 and performs very simple statistical analysis in order to reveal 
 similarity relationships between the witnesses.
 
