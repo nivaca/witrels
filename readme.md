@@ -1,13 +1,14 @@
-# witrels
-
-A Python script which compares TEI-XML diplomatic transcriptions 
+[Witrels](https://github.com/nivaca/witrels) is a Python script which compares TEI-XML diplomatic transcriptions 
 created according to the [SCTA standards](http://community.scta.info/pages/lombardpress-schema-diplomatic.html).
+It produces a table of frequencies (and a pie chart) of the correspondences relations which exist between 
+parallel segments across all witnesses.
 
 🄯 2021 [Nicolas Vaughan](http://nicolasvaughan.org)
 
-n.vaughan@uniandes.edu.co
+[n.vaughan@uniandes.edu.co](mailto:n.vaughan@uniandes.edu.co)
 
-Universidad de los Andes, Colombia
+Universidad de los Andes, Colombia.
+
 
 ## Requirements
 
@@ -25,6 +26,7 @@ Universidad de los Andes, Colombia
 [Plotly](https://plotly.com/python/) and [Kaleido](https://github.com/plotly/Kaleido)
 are optional, as they are required only to produce a pie chart 
 and render it on a web browser.
+
 
 ## Installation
 1. Clone this repo: `git clone https://github.com/nivaca/witrels` 
@@ -59,7 +61,7 @@ For instance, witness 1 (`#V`) can have:
 </p>
 ```
 
-while witness 2 (`#T`) has:
+while witness 2 (`#T`) can have:
 
 ```xml
 <p xml:id="b1d3qun-cdtvet">
@@ -73,11 +75,13 @@ All elements are stripped off for comparison: `<note>`, `<lb/`, and so on. (See 
 
 A [Python port](https://interedition.github.io/collatex/pythonport.html) 
 of the [CollateX](https://collatex.net/) tool set is used to compare each `<p>` across all witnesses. 
-Collatex breaks down the text into several sections and then produces a json output.
-Witrels then parses and analises this output, and then performs very simple statistical analysis
-in order to reveal similarity relationships between the witnesses.
+Collatex breaks the text down into several segments and then produces a json output of its comparison 
+(see [here](https://collatex.net/doc/#json-output) for details).
+[Witrels](https://github.com/nivaca/witrels) then parses and analises this output, 
+and performs very simple statistical analysis in order to reveal 
+similarity relationships between the witnesses.
 
-A typical output can be:
+A typical output will be:
 
 ```
 ABBB: 31.21%
@@ -99,3 +103,42 @@ ABCD: 0.85%
 with the corresponding pie chart being:
 
 ![newplot](newplot.png)
+
+
+## Interpreting the Output
+[Witrels](https://github.com/nivaca/witrels) sorts the witnesses alphabetically according to their file names.
+In our example: `maz`, `sorb193`, `tara`, and `vatlat955`.
+
+Correspondence relations are designated with `n`-letter codes 
+(where `n` is the number of witnesses), for example `AAAB`. 
+From left to right, each column (or position) corresponds to a witnesses (according the the sorting described above).
+Sameness of letter (`A`, `B`, `C`, `D`, etc.) means that the witnesses have the same reading in a certain segment,
+whereas difference in letter means that they have different readings.
+
+
+For example, the code `AAAB` means that in a certain segment, 
+the first three witnesses have exactly the same reading, 
+while they all differ from the last one witness.
+Of course, if all witnesses have the same reading in a segment, the corresponding code will be `AAAA`.
+And if all witnesses have a different reading, the code will be `ABCD`.
+
+
+[Witrels](https://github.com/nivaca/witrels) assigns a code to the correspondence relation 
+of each segment in every paragraph, and then calculates the frequency in which they occur.
+The output table (and corresponding pie chart) shows such frequencies (as percentages).
+
+Accordingly, an output like `ABBB: 31.21%` means that in 31.21% of all segments, the last three witnesses 
+had identical readings, while differing from the first witness;
+an output like `ABAA: 15.41%` means that in 15.41% of all segments, the first, third, and fourth witnesses
+had identical reading, while differing from the second one; 
+and output like `AAAD: 9.13%` means that in `9.13%` of all segments, the first three witnesses coincided,
+while they diverged from the last witness;
+and so on.
+
+
+## TODO
+- Generalise for more than four witnesses.
+
+
+## License
+See [LICENSE](LICENSE).
