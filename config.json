@@ -3,5 +3,5 @@
     "defaultdatadir" : "data/",
     "tempdatadir" : "tempdata/",
     "resultfile" : "results.txt",
-    "plotresults" : false
+    "plotresults" : true
 }
