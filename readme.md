@@ -105,7 +105,9 @@ with the corresponding pie chart being:
 ![newplot](newplot.png)
 
 
+
 ## Interpreting the Output
+
 [Witrels](https://github.com/nivaca/witrels) sorts the witnesses alphabetically according to their file names.
 In our example: `maz`, `sorb193`, `tara`, and `vatlat955`.
 
@@ -134,6 +136,23 @@ had identical reading, while differing from the second one;
 and output like `AAAD: 9.13%` means that in `9.13%` of all segments, the first three witnesses coincided,
 while they diverged from the last witness;
 and so on.
+
+
+## Usage
+
+- **Mode 1:** using the [data.lst](https://github.com/nivaca/witrels/blob/main/data.lst) file, which contains a list of URLs of valid TEI-XML files.
+  - The script will create a data directory (named after the XML prefix of the document),
+  where the files will be downloaded and parsed.
+  
+- **Mode 2:** if the data directory (`data/`) inside the projects folder exists, the script seeks for a set of valid TEI-XML files. 
+  These files must be different witnesses of one same document, as explained above.
+
+For either case, simply run the script:
+
+> python witrels.py
+
+Output data is stored in the data directory.
+
 
 
 ## TODO
