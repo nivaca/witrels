@@ -8,10 +8,10 @@ Runs on Python 3.8+ """
 import itertools
 import operator
 
-try:
-    import pandas
-except ImportError:
-    raise ImportError("\n[!] pandas module not available.\nAborting...")
+# try:
+#     import pandas
+# except ImportError:
+#     raise ImportError("\n[!] pandas module not available.\nAborting...")
 
 try:
     import defaults

@@ -25,10 +25,10 @@ except ImportError:
     raise ImportError("\n[!] collatex module not available.\nAborting...")
 
 # debug:
-try:
-    from pprint import pprint
-except ImportError:
-    raise ImportError("\n[!] pprint module not available.\nAborting...")
+# try:
+#     from pprint import pprint
+# except ImportError:
+#     raise ImportError("\n[!] pprint module not available.\nAborting...")
 
 
 # -------------------------------------------------------------------------------
