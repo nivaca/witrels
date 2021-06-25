@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-""" witnessrelations.py
+""" witrels.py
 Witness Relationships v.0.1
 🄯 2021 Nicolas Vaughan
 n.vaughan@uniandes.edu.co
