@@ -1,6 +1,6 @@
 """ createcollation.py
 Part of Witness Relationships v.0.1
-🄯 2021 Nicolas Vaughan
+🄯 2022 Nicolas Vaughan
 n.vaughan@uniandes.edu.co
 Universidad de los Andes, Colombia
 Runs on Python 3.8+ """

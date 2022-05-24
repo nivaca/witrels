@@ -1,6 +1,6 @@
 """ xmlcleaners.py
 Part of Witness Relationships v.0.1
-🄯 2021 Nicolas Vaughan
+🄯 2022 Nicolas Vaughan
 n.vaughan@uniandes.edu.co
 Universidad de los Andes, Colombia
 Runs on Python 3.8+ """
@@ -16,9 +16,9 @@ import re
 
 
 def clean_str(thetext: str) -> str:
-    thetext = re.sub(r"¶", "", thetext)
+    thetext = re.sub(r"¶", "", thetext)  # pilcrow
+    thetext = re.sub(r"[:;,\.]", "", thetext)  # punctuation
     thetext = re.sub(r"\n", " ", thetext)
-    thetext = re.sub(r"[.,:;]", " ", thetext)
     thetext = re.sub(r"\t{1,8}", " ", thetext)
     thetext = re.sub(r"[ ]{2,8}", " ", thetext)
     thetext = re.sub(r"[ ]{2,8}", " ", thetext)
