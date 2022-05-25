@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """ witrels.py
-Witness Relationships v.0.1
+Witness Relationships v.0.2
 🄯 2022 Nicolas Vaughan
 n.vaughan@uniandes.edu.co
 Universidad de los Andes, Colombia

@@ -1,5 +1,5 @@
 """ getdata.py
-Part of Witness Relationships v.0.1
+Part of Witness Relationships v.0.2
 🄯 2022 Nicolas Vaughan
 n.vaughan@uniandes.edu.co
 Universidad de los Andes, Colombia
