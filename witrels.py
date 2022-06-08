@@ -11,6 +11,8 @@ import sys
 import json
 from os import path
 
+import sparql_query
+
 try:
     import defaults
 except ImportError:
@@ -41,45 +43,71 @@ try:
 except ImportError:
     raise ImportError("\n[!] createcollation module not available.\nAborting...")
 
+import argparse
+import requests
+import json
+import re
+
 
 # ----------------------------------------------------
 # ----------------------------------------------------
 
-def read_config_file() -> None:
-    configfile = "config.json"
-    if not path.exists(configfile):
-        print(f"[!] Error! Missing {configfile}. Aborting...")
+class Bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
+def get_resource_url(resource_id: str) -> str:
+    """ Checks if resource_id is valid and if so
+    returns the corresponding URL.
+    """
+    url = re.sub('https:', 'http:', resource_id)
+
+    response = requests.get(
+        url,
+        headers={'Accept': 'application/json'},
+    )
+
+    if len(response.json()) == 0:
+        print(f"{Bcolors.FAIL}error:{Bcolors.ENDC} invalid resource ({resource_id})")
         sys.exit(1)
 
-    with open(configfile, 'r') as file:
-        conf = json.load(file)
-        # set globals in defaults.py
-        defaults.datafilename = conf["datafilename"]
-        defaults.defaultdatadir = conf["defaultdatadir"]
-        defaults.tempdatadir = conf["tempdatadir"]
-        defaults.resultfile = conf["resultfile"]
-        defaults.plotresults = conf["plotresults"]
+    return url
 
-    datafilename = defaults.datafilename
-    if not path.exists(datafilename):
-        print(f"[!] Error: {datafilename} doesn't exist! Aborting...")
-        sys.exit(1)
-    else:
-        with open(datafilename, "r") as datafile:
-            entries = getdata.clean_urllist(datafile.readlines())
-            defaults.witnum = len(entries)  # set globals.witnum
-            entry = entries[0].split('/')
-            defaults.prefix = entry[-2]  # set globals.prefix
-            defaults.datadir = "data_" + defaults.prefix + "/"  # set globals.datadir
-            defaults.sigla = sorted(defaults.sigla)  # set globals.sigla
-    return
+
+def parse_options():
+    parser = argparse.ArgumentParser(
+        description="Compute coincidence frequencies in witnesses' readings",
+        usage="%(prog)s [resource_id]",
+    )
+    parser.add_argument('resource_id', metavar='resource_id',
+                        help='(e.g. <http://scta.info/resource/b1-d1-q13>')
+    return parser.parse_args()
 
 
 # -----------------------------------------------------
+
 def main() -> None:
     """ Main function. """
-    # read configfile and set global variables in defaults.py
-    read_config_file()
+
+    args = parse_options()
+    resource_id = args.resource_id
+    resource_url = get_resource_url(resource_id)
+
+    print(f"{Bcolors.OKGREEN}[+]{Bcolors.ENDC} Parsing {resource_url}")
+
+    transcriptions = sparql_query.run_query(resource_url)
+
+    print(f"{Bcolors.OKGREEN}[+]{Bcolors.ENDC} {len(transcriptions)} transcriptions found")
+
+    quit()
 
     # Create a list of xml files from the data dir
     filelist = getdata.get_input_data()
