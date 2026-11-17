@@ -1,7 +1,7 @@
 """ processcollation.py
 Part of Witness Relationships v.0.2
 🄯 2022 Nicolas Vaughan
-n.vaughan@uniandes.edu.co
+nicolasvaughan@proton.me
 Universidad de los Andes, Colombia
 Runs on Python 3.8+ """
 

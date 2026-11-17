@@ -5,7 +5,7 @@ parallel segments across all witnesses.
 
 🄯 2021 [Nicolas Vaughan](http://nicolasvaughan.org)
 
-[n.vaughan@uniandes.edu.co](mailto:n.vaughan@uniandes.edu.co)
+[nicolasvaughan@proton.me](mailto:nicolasvaughan@proton.me)
 
 Universidad de los Andes, Colombia.
 
